@@ -1,0 +1,36 @@
+#include <stdio.h>
+int top = 0,top1 = -1,top2 = -1;
+int chairs[10], even[5], odd[5];
+
+void push(int x, int check)
+{
+    if (check == 0)
+        odd[++top2] = x;
+    else
+        even[++top1] = x;
+}
+
+display (int a[], int t)
+{
+    for (; t >= 0; t--)
+        printf ("%d ", a[t]);
+}
+
+int main()
+{
+    printf("Enter the labels of all the 10 chairs: \n");
+    for(top=0;top < 10; top++)
+        scanf("%d", &chairs[top]);
+    for (int i = top; i >= 0; i--, top--)
+    {
+        if (chairs[i]%2 == 0)
+            push (chairs[i], 1);
+        else
+            push (chairs[i], 0);
+    }
+    printf ("\n");
+    display (even, top1);
+    printf ("\n");
+    display (odd, top2);
+    return 0;
+}
